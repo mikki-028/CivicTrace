@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssetsIndexRouteImport } from './routes/assets.index'
+import { Route as AssetsEntityIdRouteImport } from './routes/assets.$entityId'
 import { Route as BwgsIndexRouteImport } from './routes/bwgs.index'
+import { Route as BwgsEntityIdRouteImport } from './routes/bwgs.$entityId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,38 +25,63 @@ const AssetsIndexRoute = AssetsIndexRouteImport.update({
   path: '/assets/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssetsEntityIdRoute = AssetsEntityIdRouteImport.update({
+  id: '/assets/$entityId',
+  path: '/assets/$entityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BwgsIndexRoute = BwgsIndexRouteImport.update({
   id: '/bwgs/',
   path: '/bwgs/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BwgsEntityIdRoute = BwgsEntityIdRouteImport.update({
+  id: '/bwgs/$entityId',
+  path: '/bwgs/$entityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets/': typeof AssetsIndexRoute
   '/bwgs/': typeof BwgsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets': typeof AssetsIndexRoute
   '/bwgs': typeof BwgsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets/': typeof AssetsIndexRoute
   '/bwgs/': typeof BwgsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assets/' | '/bwgs/'
+  fullPaths:
+    '/' | '/assets/$entityId' | '/bwgs/$entityId' | '/assets/' | '/bwgs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assets' | '/bwgs'
-  id: '__root__' | '/' | '/assets/' | '/bwgs/'
+  to: '/' | '/assets/$entityId' | '/bwgs/$entityId' | '/assets' | '/bwgs'
+  id:
+    | '__root__'
+    | '/'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets/'
+    | '/bwgs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssetsEntityIdRoute: typeof AssetsEntityIdRoute
+  BwgsEntityIdRoute: typeof BwgsEntityIdRoute
   AssetsIndexRoute: typeof AssetsIndexRoute
   BwgsIndexRoute: typeof BwgsIndexRoute
 }
@@ -75,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssetsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assets/$entityId': {
+      id: '/assets/$entityId'
+      path: '/assets/$entityId'
+      fullPath: '/assets/$entityId'
+      preLoaderRoute: typeof AssetsEntityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bwgs/': {
       id: '/bwgs/'
       path: '/bwgs'
@@ -82,11 +116,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BwgsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bwgs/$entityId': {
+      id: '/bwgs/$entityId'
+      path: '/bwgs/$entityId'
+      fullPath: '/bwgs/$entityId'
+      preLoaderRoute: typeof BwgsEntityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssetsEntityIdRoute: AssetsEntityIdRoute,
+  BwgsEntityIdRoute: BwgsEntityIdRoute,
   AssetsIndexRoute: AssetsIndexRoute,
   BwgsIndexRoute: BwgsIndexRoute,
 }
