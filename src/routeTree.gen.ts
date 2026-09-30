@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as AssetsIndexRouteImport } from './routes/assets.index'
 import { Route as AssetsEntityIdRouteImport } from './routes/assets.$entityId'
 import { Route as BwgsIndexRouteImport } from './routes/bwgs.index'
@@ -18,6 +20,16 @@ import { Route as BwgsEntityIdRouteImport } from './routes/bwgs.$entityId'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AssetsIndexRoute = AssetsIndexRouteImport.update({
@@ -43,6 +55,8 @@ const BwgsEntityIdRoute = BwgsEntityIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets/': typeof AssetsIndexRoute
@@ -50,6 +64,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets': typeof AssetsIndexRoute
@@ -58,6 +74,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
   '/assets/': typeof AssetsIndexRoute
@@ -66,12 +84,27 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/assets/$entityId' | '/bwgs/$entityId' | '/assets/' | '/bwgs/'
+    | '/'
+    | '/events'
+    | '/reports'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets/'
+    | '/bwgs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assets/$entityId' | '/bwgs/$entityId' | '/assets' | '/bwgs'
+  to:
+    | '/'
+    | '/events'
+    | '/reports'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets'
+    | '/bwgs'
   id:
     | '__root__'
     | '/'
+    | '/events'
+    | '/reports'
     | '/assets/$entityId'
     | '/bwgs/$entityId'
     | '/assets/'
@@ -80,6 +113,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventsRoute: typeof EventsRoute
+  ReportsRoute: typeof ReportsRoute
   AssetsEntityIdRoute: typeof AssetsEntityIdRoute
   BwgsEntityIdRoute: typeof BwgsEntityIdRoute
   AssetsIndexRoute: typeof AssetsIndexRoute
@@ -93,6 +128,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/assets/': {
@@ -128,6 +177,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventsRoute: EventsRoute,
+  ReportsRoute: ReportsRoute,
   AssetsEntityIdRoute: AssetsEntityIdRoute,
   BwgsEntityIdRoute: BwgsEntityIdRoute,
   AssetsIndexRoute: AssetsIndexRoute,
