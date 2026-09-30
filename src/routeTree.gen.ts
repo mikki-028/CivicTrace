@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as QueueRouteImport } from './routes/queue'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as AssetsIndexRouteImport } from './routes/assets.index'
 import { Route as AssetsEntityIdRouteImport } from './routes/assets.$entityId'
@@ -25,6 +27,16 @@ const IndexRoute = IndexRouteImport.update({
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QueueRoute = QueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReportsRoute = ReportsRouteImport.update({
@@ -56,6 +68,8 @@ const BwgsEntityIdRoute = BwgsEntityIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
+  '/map': typeof MapRoute
+  '/queue': typeof QueueRoute
   '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
@@ -65,6 +79,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
+  '/map': typeof MapRoute
+  '/queue': typeof QueueRoute
   '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
@@ -75,6 +91,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/events': typeof EventsRoute
+  '/map': typeof MapRoute
+  '/queue': typeof QueueRoute
   '/reports': typeof ReportsRoute
   '/assets/$entityId': typeof AssetsEntityIdRoute
   '/bwgs/$entityId': typeof BwgsEntityIdRoute
@@ -86,6 +104,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/events'
+    | '/map'
+    | '/queue'
     | '/reports'
     | '/assets/$entityId'
     | '/bwgs/$entityId'
@@ -95,6 +115,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/events'
+    | '/map'
+    | '/queue'
     | '/reports'
     | '/assets/$entityId'
     | '/bwgs/$entityId'
@@ -104,6 +126,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/events'
+    | '/map'
+    | '/queue'
     | '/reports'
     | '/assets/$entityId'
     | '/bwgs/$entityId'
@@ -114,6 +138,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EventsRoute: typeof EventsRoute
+  MapRoute: typeof MapRoute
+  QueueRoute: typeof QueueRoute
   ReportsRoute: typeof ReportsRoute
   AssetsEntityIdRoute: typeof AssetsEntityIdRoute
   BwgsEntityIdRoute: typeof BwgsEntityIdRoute
@@ -135,6 +161,20 @@ declare module '@tanstack/react-router' {
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/queue': {
+      id: '/queue'
+      path: '/queue'
+      fullPath: '/queue'
+      preLoaderRoute: typeof QueueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reports': {
@@ -178,6 +218,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EventsRoute: EventsRoute,
+  MapRoute: MapRoute,
+  QueueRoute: QueueRoute,
   ReportsRoute: ReportsRoute,
   AssetsEntityIdRoute: AssetsEntityIdRoute,
   BwgsEntityIdRoute: BwgsEntityIdRoute,
