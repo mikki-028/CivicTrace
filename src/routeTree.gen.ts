@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as AssetsIndexRouteImport } from './routes/assets.index'
+import { Route as AssetsEntityIdRouteImport } from './routes/assets.$entityId'
+import { Route as BwgsIndexRouteImport } from './routes/bwgs.index'
+import { Route as BwgsEntityIdRouteImport } from './routes/bwgs.$entityId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetsIndexRoute = AssetsIndexRouteImport.update({
+  id: '/assets/',
+  path: '/assets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetsEntityIdRoute = AssetsEntityIdRouteImport.update({
+  id: '/assets/$entityId',
+  path: '/assets/$entityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BwgsIndexRoute = BwgsIndexRouteImport.update({
+  id: '/bwgs/',
+  path: '/bwgs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BwgsEntityIdRoute = BwgsEntityIdRouteImport.update({
+  id: '/bwgs/$entityId',
+  path: '/bwgs/$entityId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
+  '/assets/': typeof AssetsIndexRoute
+  '/bwgs/': typeof BwgsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
+  '/assets': typeof AssetsIndexRoute
+  '/bwgs': typeof BwgsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/events': typeof EventsRoute
+  '/reports': typeof ReportsRoute
+  '/assets/$entityId': typeof AssetsEntityIdRoute
+  '/bwgs/$entityId': typeof BwgsEntityIdRoute
+  '/assets/': typeof AssetsIndexRoute
+  '/bwgs/': typeof BwgsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/events'
+    | '/reports'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets/'
+    | '/bwgs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/events'
+    | '/reports'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets'
+    | '/bwgs'
+  id:
+    | '__root__'
+    | '/'
+    | '/events'
+    | '/reports'
+    | '/assets/$entityId'
+    | '/bwgs/$entityId'
+    | '/assets/'
+    | '/bwgs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EventsRoute: typeof EventsRoute
+  ReportsRoute: typeof ReportsRoute
+  AssetsEntityIdRoute: typeof AssetsEntityIdRoute
+  BwgsEntityIdRoute: typeof BwgsEntityIdRoute
+  AssetsIndexRoute: typeof AssetsIndexRoute
+  BwgsIndexRoute: typeof BwgsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assets/': {
+      id: '/assets/'
+      path: '/assets'
+      fullPath: '/assets/'
+      preLoaderRoute: typeof AssetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assets/$entityId': {
+      id: '/assets/$entityId'
+      path: '/assets/$entityId'
+      fullPath: '/assets/$entityId'
+      preLoaderRoute: typeof AssetsEntityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bwgs/': {
+      id: '/bwgs/'
+      path: '/bwgs'
+      fullPath: '/bwgs/'
+      preLoaderRoute: typeof BwgsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bwgs/$entityId': {
+      id: '/bwgs/$entityId'
+      path: '/bwgs/$entityId'
+      fullPath: '/bwgs/$entityId'
+      preLoaderRoute: typeof BwgsEntityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EventsRoute: EventsRoute,
+  ReportsRoute: ReportsRoute,
+  AssetsEntityIdRoute: AssetsEntityIdRoute,
+  BwgsEntityIdRoute: BwgsEntityIdRoute,
+  AssetsIndexRoute: AssetsIndexRoute,
+  BwgsIndexRoute: BwgsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
