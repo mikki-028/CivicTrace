@@ -35,10 +35,10 @@ export interface CivicEvent {
   timestamp: string;
   actor: string;
   title: string;
-  detail?: string;
+  detail?: string | undefined;
   location?: string;
   issueType?: IssueType;
-  hasPhoto?: boolean;
+  hasPhoto?: boolean | undefined;
   verification?: VerificationStatus;
 }
 

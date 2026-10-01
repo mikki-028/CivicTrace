@@ -188,7 +188,7 @@ function Overview() {
               </p>
             )}
             <Button asChild size="sm" variant="secondary" className="mt-3">
-              <Link to="/map">Open GIS map</Link>
+              <Link to="/map" search={{}}>Open GIS map</Link>
             </Button>
           </div>
         </div>

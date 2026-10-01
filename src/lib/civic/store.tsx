@@ -63,8 +63,8 @@ interface CivicContextValue {
   submitReport: (input: {
     entityId: string;
     issueType: IssueType;
-    note?: string;
-    hasPhoto?: boolean;
+    note?: string | undefined;
+    hasPhoto?: boolean | undefined;
   }) => CivicEvent;
   recordVerification: (input: {
     entityId: string;
