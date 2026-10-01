@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -153,4 +154,74 @@
     linear-gradient(to right, var(--color-border) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+.leaflet-container {
+  background: var(--color-surface-muted);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+.leaflet-control-zoom a,
+.leaflet-control-attribution {
+  color: var(--color-foreground);
+}
+
+.leaflet-control-attribution {
+  background-color: color-mix(in oklch, var(--color-surface) 88%, transparent);
+}
+
+.civic-map-icon {
+  background: transparent;
+  border: 0;
+}
+
+.civic-map-marker {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.3125rem;
+  border: 0.1875rem solid var(--color-surface);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-raised);
+  transition: transform 150ms ease;
+}
+
+.civic-map-marker--bwg {
+  border-radius: var(--radius-sm);
+}
+
+.civic-map-icon:hover .civic-map-marker,
+.civic-map-icon:focus .civic-map-marker {
+  transform: scale(1.2);
+}
+
+.civic-map-marker--normal { background-color: var(--color-normal); }
+.civic-map-marker--pending { background-color: var(--color-pending); }
+.civic-map-marker--attention,
+.civic-map-marker--maintenance { background-color: var(--color-attention); }
+.civic-map-marker--priority { background-color: var(--color-priority); }
+.civic-map-marker--verification { background-color: var(--color-verification); }
+
+.civic-map-ward {
+  pointer-events: none;
+}
+
+.civic-map-ward-label {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-panel);
+}
+
+.civic-map-ward-label::before {
+  border-top-color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .civic-map-marker {
+    transition: none;
+  }
 }
