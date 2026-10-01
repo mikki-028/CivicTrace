@@ -14,8 +14,8 @@ import { eventsFor, fmtDateTime, openReports } from "@/lib/civic/rules";
 import type { CivicEntity, Flag } from "@/lib/civic/types";
 
 export const Route = createFileRoute("/map")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    entity: typeof search.entity === "string" ? search.entity : undefined,
+  validateSearch: (search: Record<string, unknown>): { entity?: string | undefined } => ({
+    entity: typeof search["entity"] === "string" ? (search["entity"] as string) : undefined,
   }),
   head: () => ({
     meta: [

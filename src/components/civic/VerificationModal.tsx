@@ -20,7 +20,7 @@ export function VerificationModal({
   onOpenChange,
 }: {
   entity: CivicEntity;
-  flag?: Flag;
+  flag?: Flag | undefined;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {

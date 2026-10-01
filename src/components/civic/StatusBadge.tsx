@@ -41,7 +41,7 @@ export function StatusBadge({
   size = "md",
 }: {
   status: StatusLevel;
-  label?: string;
+  label?: string | undefined;
   className?: string;
   size?: "sm" | "md";
 }) {

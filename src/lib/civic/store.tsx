@@ -63,8 +63,8 @@ interface CivicContextValue {
   submitReport: (input: {
     entityId: string;
     issueType: IssueType;
-    note?: string;
-    hasPhoto?: boolean;
+    note?: string | undefined;
+    hasPhoto?: boolean | undefined;
   }) => CivicEvent;
   recordVerification: (input: {
     entityId: string;
@@ -279,7 +279,19 @@ export function CivicProvider({ children }: { children: ReactNode }) {
     resetDemo,
   };
 
-  return <CivicContext.Provider value={value}>{children}</CivicContext.Provider>;
+  // Demo data depends on the viewer's local clock/timezone, so render only in the browser
+  // to avoid server/client mismatches.
+  return (
+    <CivicContext.Provider value={value}>
+      {hydrated ? (
+        children
+      ) : (
+        <div className="flex min-h-screen items-center justify-center text-sm text-muted-foreground">
+          Loading CivicTrace…
+        </div>
+      )}
+    </CivicContext.Provider>
+  );
 }
 
 export function useCivic() {
