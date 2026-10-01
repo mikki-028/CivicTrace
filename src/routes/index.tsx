@@ -15,6 +15,7 @@ import { EventDetailDialog } from "@/components/civic/EventDetailDialog";
 import { InsightCard } from "@/components/civic/InsightCard";
 import { InsightDialog } from "@/components/civic/InsightDialog";
 import { KpiCard } from "@/components/civic/KpiCard";
+import { OverviewMap } from "@/components/civic/OverviewMap";
 import { DetectVerifyActNote, PageHeader, PrototypeNote } from "@/components/civic/PageHeader";
 import { useCivic } from "@/lib/civic/store";
 import { isToday } from "@/lib/civic/rules";
@@ -102,6 +103,8 @@ function Overview() {
         />
       </section>
       <PrototypeNote />
+
+      <OverviewMap />
 
       <section className="space-y-3">
         <div className="flex items-end justify-between gap-3">
