@@ -134,6 +134,8 @@ export function OverviewMap() {
         markerRefs.current.set(entity.id, marker);
       });
     });
+
+    return undefined;
   }, [filter, statusOf, visibleEntities]);
 
   const resetMap = () => {
