@@ -71,7 +71,7 @@ export function AppSidebar() {
               {NAV.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={isActive(item.url)} tooltip={item.title}>
-                    <Link to={item.url} className="flex items-center gap-2">
+                    <Link to={item.url} className="flex items-center gap-2" data-tour={`nav-${item.url}`}>
                       <item.icon className="size-4" />
                       {!collapsed && <span>{item.title}</span>}
                       {!collapsed && item.url === "/queue" && totals.flags > 0 && (

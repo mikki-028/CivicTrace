@@ -121,7 +121,7 @@ function ReportsPage() {
         ]}
       />
 
-      <div className="panel overflow-hidden">
+      <div data-tour="reports-log" className="panel overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="bg-surface-muted">

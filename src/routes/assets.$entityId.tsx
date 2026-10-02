@@ -99,7 +99,7 @@ function AssetDetail() {
 
       <DetectVerifyActNote />
 
-      <section className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
+      <section data-tour="entity-identity" className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
         <div className="panel p-4">
           <h2 className="text-base font-semibold">Digital identity</h2>
           <dl className="mt-3 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">

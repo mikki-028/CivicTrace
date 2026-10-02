@@ -85,7 +85,7 @@ export function TopBar() {
       <div className="ml-auto flex items-center gap-1.5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+            <Button variant="outline" size="sm" className="hidden sm:inline-flex" data-tour="ward">
               {ward}
               <ChevronDown className="size-3.5" />
             </Button>
