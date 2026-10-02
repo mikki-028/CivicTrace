@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { EventTimeline } from "@/components/civic/EventTimeline";
+import { GisInteractiveMap } from "@/components/civic/GisInteractiveMap";
 import { InsightCard } from "@/components/civic/InsightCard";
 import { InsightDialog } from "@/components/civic/InsightDialog";
-import { MapCanvas, MapLegend } from "@/components/civic/MapCanvas";
+import { MapLegend } from "@/components/civic/MapCanvas";
 import { PageHeader, PrototypeNote } from "@/components/civic/PageHeader";
 import { StatusBadge } from "@/components/civic/StatusBadge";
 import { useCivic } from "@/lib/civic/store";
@@ -42,7 +43,7 @@ function MapPage() {
   const [activeFlag, setActiveFlag] = useState<Flag | null>(null);
 
   const selected = entities.find((e) => e.id === (selectedId ?? "")) ?? null;
-  const select = (entity: CivicEntity) => setSelectedId(entity.id);
+  const select = useCallback((entity: CivicEntity) => setSelectedId(entity.id), []);
 
   return (
     <div className="space-y-5">
@@ -53,7 +54,7 @@ function MapPage() {
 
       <div className="grid gap-4 xl:grid-cols-[1.45fr_1fr]">
         <div className="space-y-3">
-          <MapCanvas
+          <GisInteractiveMap
             entities={entities}
             statusOf={statusOf}
             selectedId={selectedId}
