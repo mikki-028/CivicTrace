@@ -2,6 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 @import "leaflet/dist/leaflet.css";
+@import "leaflet.markercluster/dist/MarkerCluster.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -196,6 +197,12 @@
   transform: scale(1.2);
 }
 
+.civic-map-marker--selected {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+  transform: scale(1.15);
+}
+
 .civic-map-marker--normal { background-color: var(--color-normal); }
 .civic-map-marker--pending { background-color: var(--color-pending); }
 .civic-map-marker--attention,
@@ -218,6 +225,31 @@
 
 .civic-map-ward-label::before {
   border-top-color: var(--color-primary);
+}
+
+.civic-map-cluster-wrap {
+  background: transparent;
+  border: 0;
+}
+
+.civic-map-cluster {
+  display: flex;
+  width: 2.375rem;
+  height: 2.375rem;
+  align-items: center;
+  justify-content: center;
+  border: 0.1875rem solid var(--color-surface);
+  border-radius: 9999px;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-raised);
+}
+
+.marker-cluster-spider-leg {
+  stroke: var(--color-foreground);
+  stroke-opacity: 0.45;
 }
 
 @media (prefers-reduced-motion: reduce) {
