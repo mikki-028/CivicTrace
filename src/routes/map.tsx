@@ -147,7 +147,7 @@ function SelectedPanel({
   const isBwg = entity.kind === "bwg";
 
   return (
-    <div className="panel p-4">
+    <div data-tour="gis-selected" className="panel p-4">
       <nav className="flex flex-wrap items-center gap-1 text-[11px] text-muted-foreground">
         <span>Delhi</span>
         <ChevronRight className="size-3" />

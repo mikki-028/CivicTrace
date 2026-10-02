@@ -83,7 +83,7 @@ function QueuePage() {
                   const entity = getEntity(flag.entityId);
                   const isBwg = flag.entityId.startsWith("BWG");
                   return (
-                    <div key={flag.id} className="panel p-4">
+                    <div key={flag.id} data-tour={`flag-${flag.id}`} className="panel p-4">
                       <div className="flex flex-wrap items-start justify-between gap-2">
                         <div>
                           <p className="mono-id">{flag.entityId}</p>

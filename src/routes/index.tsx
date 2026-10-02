@@ -67,7 +67,7 @@ function Overview() {
 
       <DetectVerifyActNote />
 
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+      <section data-tour="kpis" className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         <KpiCard
           label="Municipal Waste Assets"
           value={totals.assets}
@@ -104,9 +104,11 @@ function Overview() {
       </section>
       <PrototypeNote />
 
-      <OverviewMap />
+      <div data-tour="overview-map">
+        <OverviewMap />
+      </div>
 
-      <section className="space-y-3">
+      <section data-tour="attention" className="space-y-3">
         <div className="flex items-end justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold">Requires Attention</h2>

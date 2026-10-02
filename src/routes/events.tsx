@@ -125,7 +125,7 @@ function EventsPage() {
         ]}
       />
 
-      <div className="panel overflow-x-auto">
+      <div data-tour="events-log" className="panel overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow className="bg-surface-muted">
