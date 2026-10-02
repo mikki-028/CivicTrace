@@ -57,7 +57,8 @@ export function GisInteractiveMap({
     if (!node || mapRef.current) return;
 
     let disposed = false;
-    void import("leaflet").then(async (L) => {
+    void import("leaflet").then(async (leafletModule) => {
+      const L = ("default" in leafletModule ? leafletModule.default : leafletModule) as typeof import("leaflet");
       Object.assign(globalThis, { L });
       await import("leaflet.markercluster");
       if (disposed || !mapNodeRef.current) return;
