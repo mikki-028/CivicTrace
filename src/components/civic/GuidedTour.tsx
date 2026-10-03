@@ -243,6 +243,9 @@ function TourRunner({
     return () => document.documentElement.classList.remove("tour-active");
   }, []);
 
+  if (step.action === "open-ward" && rect) {
+    cardStyle = { left: Math.max(12, rect.right - 200 - cardW), top: rect.bottom + 12, width: cardW };
+  }
   if (step.action === "why-flagged") {
     cardStyle = { left: (vw - cardW) / 2, top: vh - 230, width: cardW };
   }
@@ -306,6 +309,9 @@ function runAction(step: Step, el: Element | null) {
   if (step.action === "open-ward") {
     const opts = { bubbles: true, cancelable: true, button: 0, pointerType: "mouse" } as const;
     el.dispatchEvent(new PointerEvent("pointerdown", opts));
+  }
+  if (step.action === "open-ward" && rect) {
+    cardStyle = { left: Math.max(12, rect.right - 200 - cardW), top: rect.bottom + 12, width: cardW };
   }
   if (step.action === "why-flagged") {
     const btn = Array.from(el.querySelectorAll("button")).find((b) => b.textContent?.includes("Why flagged"));
