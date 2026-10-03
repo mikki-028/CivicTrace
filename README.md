@@ -8,12 +8,12 @@ CivicTrace is a lightweight **digital identity and event layer** designed to mak
 
 CivicTrace connects ground-level activities such as:
 
-- 🗑️ Waste collection
-- 📢 Citizen reports
-- 🔍 Inspections
-- 🛠️ Maintenance
-- ♻️ Compliance events
-- 📍 Geographic activity
+-  Waste collection
+-  Citizen reports
+-  Inspections
+-  Maintenance
+-  Compliance events
+-  Geographic activity
 
 The platform uses **rule-based pattern detection** to surface recurring issues such as post-collection overflow, overdue collections, high-maintenance assets, and repeated BWG compliance concerns. CivicTrace
 
