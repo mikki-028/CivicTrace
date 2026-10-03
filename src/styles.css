@@ -265,3 +265,6 @@ html.tour-active [data-radix-popper-content-wrapper] {
 html.tour-active .tour-lift {
   z-index: 1001 !important;
 }
+html.tour-active [role="dialog"][data-state="open"]:not(.tour-card) {
+  z-index: 1001 !important;
+}

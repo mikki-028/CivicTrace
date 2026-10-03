@@ -238,7 +238,17 @@ function TourRunner({
     cardStyle = { left, top: Math.min(top, vh - 220), width: cardW };
   }
 
+  useEffect(() => {
+    document.documentElement.classList.add("tour-active");
+    return () => document.documentElement.classList.remove("tour-active");
+  }, []);
+
+  if (step.action === "why-flagged") {
+    cardStyle = { left: (vw - cardW) / 2, top: vh - 230, width: cardW };
+  }
+
   return createPortal(
+    <>
     <div className="pointer-events-none fixed inset-0 z-[1000]">
       {rect ? (
         <div
@@ -254,10 +264,11 @@ function TourRunner({
       ) : (
         <div className="absolute inset-0 bg-foreground/45" />
       )}
+    </div>
       <div
         role="dialog"
         aria-label={step.title}
-        className="pointer-events-auto absolute panel bg-surface p-4 shadow-raised"
+        className="tour-card pointer-events-auto fixed z-[1002] panel bg-surface p-4 shadow-raised"
         style={cardStyle}
       >
         <div className="flex items-center justify-between gap-2 text-[11px] text-muted-foreground">
@@ -285,7 +296,7 @@ function TourRunner({
           </div>
         </div>
       </div>
-    </div>,
+    </>,
     document.body,
   );
 }

@@ -17,6 +17,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { AppSidebar } from "@/components/civic/AppSidebar";
 import { TopBar } from "@/components/civic/TopBar";
 import { CivicProvider } from "@/lib/civic/store";
+import { GuidedTourProvider } from "@/components/civic/GuidedTour";
 
 function NotFoundComponent() {
   return (
@@ -131,6 +132,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CivicProvider>
         <SidebarProvider>
+          <GuidedTourProvider>
           <div className="flex min-h-screen w-full bg-background">
             <AppSidebar />
             <div className="flex min-w-0 flex-1 flex-col">
@@ -142,6 +144,7 @@ function RootComponent() {
             </div>
           </div>
           <Toaster position="top-right" />
+          </GuidedTourProvider>
         </SidebarProvider>
       </CivicProvider>
     </QueryClientProvider>
