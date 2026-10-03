@@ -5,6 +5,7 @@ import {
   LogOut,
   Map,
   Megaphone,
+  PlayCircle,
   Settings,
   ScrollText,
   Trash2,
@@ -26,6 +27,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useCivic } from "@/lib/civic/store";
+import { useGuidedTour } from "@/components/civic/GuidedTour";
 
 const NAV = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
@@ -42,6 +44,7 @@ export function AppSidebar() {
   const collapsed = state === "collapsed";
   const pathname = useRouterState({ select: (r) => r.location.pathname });
   const { official, totals, resetDemo } = useCivic();
+  const tour = useGuidedTour();
 
   const isActive = (url: string) => (url === "/" ? pathname === "/" : pathname.startsWith(url));
 
@@ -110,6 +113,14 @@ export function AppSidebar() {
               {!collapsed && <span>Settings · Reset demo data</span>}
             </SidebarMenuButton>
           </SidebarMenuItem>
+          {tour.completed && (
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip="Replay Guided Tour" onClick={tour.start}>
+                <PlayCircle className="size-4" />
+                {!collapsed && <span>Settings · Replay Guided Tour</span>}
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )}
           <SidebarMenuItem>
             <SidebarMenuButton
               tooltip="Logout"
