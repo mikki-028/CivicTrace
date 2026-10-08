@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useCivic } from "@/lib/civic/store";
 import { useGuidedTour } from "@/components/civic/GuidedTour";
+import logoAsset from "@/assets/civictrace-logo.png.asset.json";
 
 const NAV = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
@@ -52,9 +53,11 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-sidebar-border">
       <SidebarHeader className="border-b border-sidebar-border px-3 py-3">
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-            <Trash2 className="size-4" />
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="CivicTrace"
+            className="size-8 shrink-0 rounded-md object-cover"
+          />
           {!collapsed && (
             <span className="min-w-0">
               <span className="block truncate text-sm font-semibold">CivicTrace</span>
