@@ -28,7 +28,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useCivic } from "@/lib/civic/store";
 import { useGuidedTour } from "@/components/civic/GuidedTour";
-import logoAsset from "@/assets/civictrace-logo.png.asset.json";
 
 const NAV = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
@@ -54,7 +53,7 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-sidebar-border px-3 py-3">
         <Link to="/" className="flex items-center gap-2.5">
           <img
-            src={logoAsset.url}
+            src="/civictrace-logo.png"
             alt="CivicTrace"
             className="size-8 shrink-0 rounded-md object-cover"
           />
