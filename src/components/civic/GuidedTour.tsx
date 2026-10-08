@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/civictrace-logo.png.asset.json";
 
 const STORAGE_KEY = "civictrace.tour.v1";
 
@@ -121,7 +122,12 @@ function Welcome({ onStart, onSkip }: { onStart: () => void; onSkip: () => void 
   const items = ["Overview dashboard", "Waste Assets", "BWGs", "Citizen Reports", "Event History", "GIS Map", "Attention Queue", "Ward selection"];
   return (
     <Modal>
-      <p className="text-xs font-medium tracking-wide text-primary uppercase">Guided demo</p>
+      <img
+        src={logoAsset.url}
+        alt="CivicTrace"
+        className="size-10 rounded-lg object-cover"
+      />
+      <p className="mt-3 text-xs font-medium tracking-wide text-primary uppercase">Guided demo</p>
       <h2 className="mt-1 text-xl font-semibold">Welcome to CivicTrace</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         Explore how municipal waste activity becomes connected, traceable and actionable.
