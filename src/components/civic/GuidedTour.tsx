@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
-import logoAsset from "@/assets/civictrace-logo.png.asset.json";
 
 const STORAGE_KEY = "civictrace.tour.v1";
 
@@ -123,7 +122,7 @@ function Welcome({ onStart, onSkip }: { onStart: () => void; onSkip: () => void 
   return (
     <Modal>
       <img
-        src={logoAsset.url}
+        src="/civictrace-logo.png"
         alt="CivicTrace"
         className="size-10 rounded-lg object-cover"
       />
